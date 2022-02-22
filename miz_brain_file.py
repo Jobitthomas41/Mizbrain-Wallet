@@ -1,28 +1,7 @@
-# found this on https://mingze-gao.com/posts/never-use-a-brain-wallet/ 
-#Edit and updated by Mizogg. 22/08/2021 
 import codecs
 import hashlib
 import ecdsa
-import winsound
-frequency = 2500  # Set Frequency To 2500 Hertz
-duration = 2500  # Set Duration To 1000 ms == 1 second
-with open("list.txt", "r") as file:
-    line_count = 0
-    for line in file:
-        line != "\n"
-        line_count += 1
-print('BRAIN WALLET PASSWORD LIST LOADING>>>>')
-print('Total Password Loaded:', line_count)
 
-mylist = []
-
-with open('list.txt', newline='', encoding='utf-8') as f:
-    for line in f:
-        mylist.append(line.strip())
-
-with open("btc.txt","r") as m:
-    add = m.read().split()
-add= set(add)
 
 class BrainWallet:
 
@@ -99,28 +78,3 @@ class BrainWallet:
         for one in range(ones):
             b58_string = '1' + b58_string
         return b58_string
-count=0
-password= line_count
-for i in range(0,len(mylist)):
-    count+=1
-    password-=1
-    passphrase = mylist[i]
-    wallet = BrainWallet()
-    private_key, address = wallet.generate_address_from_passphrase(passphrase)
-    print('\nTotal Password Loaded:', line_count)
-    print('Passphrase       : ',passphrase)
-    print('Private Key      : ',private_key)
-    print('Bitcoin Address  : ',address)
-    print('Scan Number : ', count, ' : Remaing Passwords : ', password)
-    if address in add:
-        print ('\nCongraz you have found Bitcoin Passphrase ')
-        print('Bitcoin Address  : ',address)
-        print('Passphrase       : ',passphrase)
-        print('Private Key      : ',private_key)
-        f=open(u"winner.txt","a")
-        f.write('\nBitcoin Address Compressed : ' + address)
-        f.write('\nPassphrase       : '+ passphrase)
-        f.write('\nPrivate Key      : '+ private_key)
-        f.write('\n =====Made by mizogg.co.uk Donations 3M6L77jC3jNejsd5ZU1CVpUVngrhanb6cD =====' )
-        f.close()
-        winsound.Beep(frequency, duration)
